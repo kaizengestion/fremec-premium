@@ -11,56 +11,56 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap">
 <style>
-  :root { --tinta: #0A1630; --tinta-3: #5A6684; --linea: #E2E7F1; --marca: #0052FF; --marca-osc: #0041CC; --fondo: #F3F5FA; --bien: #0B7F57; --mal: #C42338; }
+  :root { --tinta: #1A1A2E; --tinta-3: #666666; --linea: #E1E7F5; --marca: #0052FF; --marca-osc: #003FCC; --suave: #E8EFFF; --fondo: #F5F7FF; --sombra: 0 4px 24px rgba(0, 82, 255, .10); }
   * { box-sizing: border-box; }
-  body { margin: 0; font-family: "Archivo", system-ui, sans-serif; color: var(--tinta); background: var(--fondo); -webkit-font-smoothing: antialiased; }
+  body { margin: 0; font: 400 16px/1.5 "Archivo", system-ui, sans-serif; color: var(--tinta); background: var(--fondo); -webkit-font-smoothing: antialiased; }
   ::selection { background: var(--marca); color: #fff; }
-  .portada { background: var(--tinta); color: #fff; padding: 40px 24px 96px; }
-  .ancho { max-width: 980px; margin: 0 auto; }
-  .logo { width: 132px; filter: brightness(0) invert(1); display: block; }
-  h1 { font-size: clamp(32px, 5vw, 54px); font-weight: 750; letter-spacing: -.03em; font-stretch: 88%; line-height: 1.04; margin: 44px 0 0; max-width: 15ch; text-wrap: balance; }
-  h1 em { font-style: normal; color: #7FA6FF; }
-  .bajada { color: #A9B6D3; font-size: 17px; line-height: 1.55; max-width: 58ch; margin: 18px 0 0; }
-  .estado { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; padding: 8px 14px; border-radius: 99px; background: rgba(255,255,255,.08); color: #C5D0E8; font-size: 14px; font-weight: 600; }
+  .top { display: flex; align-items: center; gap: 14px; min-height: 60px; padding: 10px 20px; background: #fff; border-bottom: 3px solid var(--marca); box-shadow: var(--sombra); }
+  .top img { height: 38px; width: auto; display: block; }
+  .pill { font-size: .75rem; font-weight: 700; letter-spacing: .12em; text-transform: uppercase; color: var(--marca); background: var(--suave); padding: 4px 12px; border-radius: 20px; }
+  .sp { flex: 1; }
+  main { width: min(860px, 100%); margin: 0 auto; padding: 40px 16px 56px; display: grid; gap: 22px; }
+  h1 { font-size: 1.6rem; font-weight: 750; letter-spacing: -.02em; font-stretch: 92%; margin: 0; line-height: 1.15; }
+  .bajada { color: var(--tinta-3); margin: 6px 0 0; max-width: 64ch; }
+  .estado { display: inline-flex; align-items: center; gap: 10px; padding: 6px 12px; border-radius: 99px; background: var(--suave); color: var(--marca-osc); font-size: .9rem; font-weight: 600; justify-self: start; }
   .estado i { width: 9px; height: 9px; border-radius: 50%; background: #F5B544; animation: latido 1.4s ease-in-out infinite; }
-  .estado.ok i { background: #5BD6A2; animation: none; }
-  .estado.mal i { background: #FF6B7A; animation: none; }
+  .estado.ok { background: #E3F6EB; color: #12A150; } .estado.ok i { background: #12A150; animation: none; }
+  .estado.mal { background: #FDECEC; color: #C0262D; } .estado.mal i { background: #C0262D; animation: none; }
   @keyframes latido { 50% { opacity: .3; } }
-  .accesos { margin-top: -60px; background: #fff; border: 1px solid var(--linea); border-radius: 12px; box-shadow: 0 2px 4px rgba(10,22,48,.06), 0 18px 40px -16px rgba(10,22,48,.28); }
-  .acceso { display: grid; grid-template-columns: 52px minmax(0,1fr) auto; gap: 18px; align-items: center; padding: 22px 24px; border-bottom: 1px solid var(--linea); color: inherit; text-decoration: none; transition: background .15s; }
+  .accesos { background: #fff; border: 1px solid var(--linea); border-radius: 16px; box-shadow: var(--sombra); }
+  .acceso { display: grid; grid-template-columns: 48px minmax(0,1fr) auto; gap: 16px; align-items: center; padding: 18px 20px; border-bottom: 1px solid var(--linea); color: inherit; text-decoration: none; transition: background .15s; }
   .acceso:last-child { border-bottom: 0; }
-  .acceso:hover { background: #F8F9FC; }
+  .acceso:hover { background: var(--fondo); }
   .acceso[aria-disabled="true"] { pointer-events: none; opacity: .5; }
-  .acceso svg { width: 26px; height: 26px; }
-  .ico { width: 52px; height: 52px; border-radius: 12px; display: grid; place-items: center; background: #EAF0FF; color: var(--marca); }
-  .acceso h2 { margin: 0; font-size: 19px; letter-spacing: -.01em; }
-  .acceso p { margin: 4px 0 0; color: var(--tinta-3); font-size: 14.5px; line-height: 1.45; }
-  .clave { font-size: 13.5px; color: var(--tinta-3); margin-top: 8px !important; }
-  .clave code { font-family: inherit; font-weight: 700; color: var(--tinta); background: #EEF1F7; padding: 1px 6px; border-radius: 5px; }
-  .ir { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border-radius: 8px; background: var(--marca); color: #fff; font-weight: 650; font-size: 14.5px; white-space: nowrap; }
+  .acceso svg { width: 24px; height: 24px; }
+  .ico { width: 48px; height: 48px; border-radius: 12px; display: grid; place-items: center; background: var(--suave); color: var(--marca); }
+  .acceso h2 { margin: 0; font-size: 1.15rem; font-weight: 700; font-stretch: 92%; }
+  .acceso p { margin: 3px 0 0; color: var(--tinta-3); font-size: .95rem; line-height: 1.45; }
+  .clave { font-size: .88rem !important; margin-top: 6px !important; }
+  .clave code { font-family: inherit; font-weight: 700; color: var(--tinta); background: var(--suave); padding: 1px 6px; border-radius: 5px; }
+  .ir { display: inline-flex; align-items: center; min-height: 42px; padding: 0 16px; border-radius: 10px; background: var(--marca); color: #fff; font-weight: 600; white-space: nowrap; }
   .acceso:hover .ir { background: var(--marca-osc); }
-  .notas { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; padding: 26px 4px 48px; color: var(--tinta-3); font-size: 14px; line-height: 1.5; }
-  .notas p { margin: 0; max-width: 62ch; }
-  button { font: inherit; font-weight: 600; font-size: 14px; color: var(--tinta); background: #fff; border: 1px solid #CDD5E4; border-radius: 8px; padding: 9px 14px; cursor: pointer; }
-  button:hover { border-color: var(--tinta-3); }
-  :focus-visible { outline: 2px solid var(--marca); outline-offset: 2px; }
+  .notas { display: flex; flex-wrap: wrap; justify-content: space-between; align-items: center; gap: 12px 24px; color: var(--tinta-3); font-size: .9rem; }
+  .notas p { margin: 0; max-width: 60ch; }
+  button { font: inherit; font-weight: 600; color: var(--tinta); background: #fff; border: 1px solid #C3CEE8; border-radius: 10px; min-height: 42px; padding: 0 16px; cursor: pointer; }
+  button:hover { background: var(--suave); }
+  :focus-visible { outline: 3px solid var(--marca); outline-offset: 2px; }
   @media (max-width: 640px) {
     .acceso { grid-template-columns: 44px minmax(0,1fr); }
     .ico { width: 44px; height: 44px; }
     .ir { grid-column: 1 / -1; justify-content: center; }
+    .top .pill.d { display: none; }
   }
 </style>
 </head>
 <body>
-<header class="portada">
-  <div class="ancho">
-    <img class="logo" src="produccion/img/logo-fremec.png" alt="FREMEC">
-    <h1>Planta Premium: producción y envasado, <em>en una sola pantalla.</em></h1>
+<header class="top"><img src="produccion/img/logo-fremec.png" alt="FREMEC"><span class="pill">Producción y envasado</span><span class="sp"></span><span class="pill d">Premium · demo</span></header>
+<main>
+  <div>
+    <h1>Fremec Planta · versión Premium</h1>
     <p class="bajada">Demo para probar sin instalar nada. Todo funciona de verdad: cargar Excel, registrar producción, envasar por nota de venta, emitir remitos. Lo que hagas queda guardado solo en este navegador.</p>
-    <span class="estado" id="estado" role="status"><i></i><span>Preparando la demo… la primera vez tarda unos segundos</span></span>
   </div>
-</header>
-<main class="ancho" style="padding:0 16px">
+  <span class="estado" id="estado" role="status"><i></i><span>Preparando la demo… la primera vez tarda unos segundos</span></span>
   <nav class="accesos" aria-label="Pantallas">
     <a class="acceso" href="produccion/admin/" aria-disabled="true">
       <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg></span>
@@ -98,7 +98,7 @@
       sw.postMessage('preparar');
     });
   }
-  navigator.serviceWorker.register('sw.js?v=202611111744', { scope: './' })
+  navigator.serviceWorker.register('sw.js?v=202611112332', { scope: './' })
     .then(function () { return navigator.serviceWorker.ready; })
     .then(function (reg) { return preparar(reg.active); })
     .then(function () {
