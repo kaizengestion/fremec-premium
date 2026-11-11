@@ -1,0 +1,122 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="robots" content="noindex, nofollow">
+<meta name="theme-color" content="#0A1630">
+<title>Fremec Planta · Premium (demo)</title>
+<link rel="icon" href="produccion/img/icono.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,400..800&display=swap">
+<style>
+  :root { --tinta: #0A1630; --tinta-3: #5A6684; --linea: #E2E7F1; --marca: #0052FF; --marca-osc: #0041CC; --fondo: #F3F5FA; --bien: #0B7F57; --mal: #C42338; }
+  * { box-sizing: border-box; }
+  body { margin: 0; font-family: "Archivo", system-ui, sans-serif; color: var(--tinta); background: var(--fondo); -webkit-font-smoothing: antialiased; }
+  ::selection { background: var(--marca); color: #fff; }
+  .portada { background: var(--tinta); color: #fff; padding: 40px 24px 96px; }
+  .ancho { max-width: 980px; margin: 0 auto; }
+  .logo { width: 132px; filter: brightness(0) invert(1); display: block; }
+  h1 { font-size: clamp(32px, 5vw, 54px); font-weight: 750; letter-spacing: -.03em; font-stretch: 88%; line-height: 1.04; margin: 44px 0 0; max-width: 15ch; text-wrap: balance; }
+  h1 em { font-style: normal; color: #7FA6FF; }
+  .bajada { color: #A9B6D3; font-size: 17px; line-height: 1.55; max-width: 58ch; margin: 18px 0 0; }
+  .estado { display: inline-flex; align-items: center; gap: 10px; margin-top: 26px; padding: 8px 14px; border-radius: 99px; background: rgba(255,255,255,.08); color: #C5D0E8; font-size: 14px; font-weight: 600; }
+  .estado i { width: 9px; height: 9px; border-radius: 50%; background: #F5B544; animation: latido 1.4s ease-in-out infinite; }
+  .estado.ok i { background: #5BD6A2; animation: none; }
+  .estado.mal i { background: #FF6B7A; animation: none; }
+  @keyframes latido { 50% { opacity: .3; } }
+  .accesos { margin-top: -60px; background: #fff; border: 1px solid var(--linea); border-radius: 12px; box-shadow: 0 2px 4px rgba(10,22,48,.06), 0 18px 40px -16px rgba(10,22,48,.28); }
+  .acceso { display: grid; grid-template-columns: 52px minmax(0,1fr) auto; gap: 18px; align-items: center; padding: 22px 24px; border-bottom: 1px solid var(--linea); color: inherit; text-decoration: none; transition: background .15s; }
+  .acceso:last-child { border-bottom: 0; }
+  .acceso:hover { background: #F8F9FC; }
+  .acceso[aria-disabled="true"] { pointer-events: none; opacity: .5; }
+  .acceso svg { width: 26px; height: 26px; }
+  .ico { width: 52px; height: 52px; border-radius: 12px; display: grid; place-items: center; background: #EAF0FF; color: var(--marca); }
+  .acceso h2 { margin: 0; font-size: 19px; letter-spacing: -.01em; }
+  .acceso p { margin: 4px 0 0; color: var(--tinta-3); font-size: 14.5px; line-height: 1.45; }
+  .clave { font-size: 13.5px; color: var(--tinta-3); margin-top: 8px !important; }
+  .clave code { font-family: inherit; font-weight: 700; color: var(--tinta); background: #EEF1F7; padding: 1px 6px; border-radius: 5px; }
+  .ir { display: inline-flex; align-items: center; gap: 6px; padding: 10px 16px; border-radius: 8px; background: var(--marca); color: #fff; font-weight: 650; font-size: 14.5px; white-space: nowrap; }
+  .acceso:hover .ir { background: var(--marca-osc); }
+  .notas { display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px 24px; padding: 26px 4px 48px; color: var(--tinta-3); font-size: 14px; line-height: 1.5; }
+  .notas p { margin: 0; max-width: 62ch; }
+  button { font: inherit; font-weight: 600; font-size: 14px; color: var(--tinta); background: #fff; border: 1px solid #CDD5E4; border-radius: 8px; padding: 9px 14px; cursor: pointer; }
+  button:hover { border-color: var(--tinta-3); }
+  :focus-visible { outline: 2px solid var(--marca); outline-offset: 2px; }
+  @media (max-width: 640px) {
+    .acceso { grid-template-columns: 44px minmax(0,1fr); }
+    .ico { width: 44px; height: 44px; }
+    .ir { grid-column: 1 / -1; justify-content: center; }
+  }
+</style>
+</head>
+<body>
+<header class="portada">
+  <div class="ancho">
+    <img class="logo" src="produccion/img/logo-fremec.png" alt="FREMEC">
+    <h1>Planta Premium: producción y envasado, <em>en una sola pantalla.</em></h1>
+    <p class="bajada">Demo para probar sin instalar nada. Todo funciona de verdad: cargar Excel, registrar producción, envasar por nota de venta, emitir remitos. Lo que hagas queda guardado solo en este navegador.</p>
+    <span class="estado" id="estado" role="status"><i></i><span>Preparando la demo… la primera vez tarda unos segundos</span></span>
+  </div>
+</header>
+<main class="ancho" style="padding:0 16px">
+  <nav class="accesos" aria-label="Pantallas">
+    <a class="acceso" href="produccion/admin/" aria-disabled="true">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="7" height="9" x="3" y="3" rx="1"/><rect width="7" height="5" x="14" y="3" rx="1"/><rect width="7" height="9" x="14" y="12" rx="1"/><rect width="7" height="5" x="3" y="16" rx="1"/></svg></span>
+      <span><h2>Panel de administración</h2><p>Trabajo del día por Excel, notas de venta de Presea, remitos, alertas, historial y personal.</p><p class="clave">Usuario <code>julieta</code> · clave <code>fremec2026</code></p></span>
+      <span class="ir">Entrar</span>
+    </a>
+    <a class="acceso" href="produccion/" aria-disabled="true">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 21.73a2 2 0 0 0 2 0l7-4A2 2 0 0 0 21 16V8a2 2 0 0 0-1-1.73l-7-4a2 2 0 0 0-2 0l-7 4A2 2 0 0 0 3 8v8a2 2 0 0 0 1 1.73z"/><path d="M12 22V12"/><path d="m3.3 7 7.703 4.734a2 2 0 0 0 1.994 0L20.7 7"/><path d="m7.5 4.27 9 5.15"/></svg></span>
+      <span><h2>Tablet del empleado</h2><p>Su producción del día y la carga de envasado con teclado numérico.</p><p class="clave">Producción: <code>dferreyra</code> · Envasado: <code>lperez</code> · clave <code>prueba123</code></p></span>
+      <span class="ir">Entrar</span>
+    </a>
+    <a class="acceso" href="produccion/tablero.php" aria-disabled="true">
+      <span class="ico"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="20" height="14" x="2" y="3" rx="2"/><path d="M8 21h8"/><path d="M12 17v4"/></svg></span>
+      <span><h2>Pantalla de planta</h2><p>Para la TV: producción por sector, pedidos para envasar y alertas. Se actualiza sola.</p><p class="clave">No pide clave</p></span>
+      <span class="ir">Abrir</span>
+    </a>
+  </nav>
+  <div class="notas">
+    <p>La conexión con Presea está simulada: las notas se generan con «Traer nota de Presea» en Envasado. Productos reales de Fremec; clientes y personas inventados.</p>
+    <button type="button" id="reiniciar">Volver a los datos de prueba</button>
+  </div>
+</main>
+<script>
+(function () {
+  var estado = document.getElementById('estado');
+  function poner(txt, clase) { estado.className = 'estado' + (clase ? ' ' + clase : ''); estado.lastChild.textContent = txt; }
+  function habilitar() { document.querySelectorAll('.acceso').forEach(function (a) { a.removeAttribute('aria-disabled'); }); }
+  if (!('serviceWorker' in navigator)) { poner('Este navegador no puede abrir la demo. Probá con Chrome, Edge, Firefox o Safari actualizados.', 'mal'); return; }
+  function preparar(sw) {
+    return new Promise(function (ok, ko) {
+      navigator.serviceWorker.addEventListener('message', function m(ev) {
+        if (ev.data === 'listo') { navigator.serviceWorker.removeEventListener('message', m); ok(); }
+        else if (String(ev.data).indexOf('error:') === 0) ko(new Error(String(ev.data).slice(6)));
+      });
+      sw.postMessage('preparar');
+    });
+  }
+  navigator.serviceWorker.register('sw.js?v=202611111744', { scope: './' })
+    .then(function () { return navigator.serviceWorker.ready; })
+    .then(function (reg) { return preparar(reg.active); })
+    .then(function () {
+      poner('Demo lista', 'ok');
+      habilitar();
+      if (!navigator.serviceWorker.controller) location.reload();
+    })
+    .catch(function (e) { poner('No se pudo preparar la demo: ' + e.message, 'mal'); });
+  document.getElementById('reiniciar').addEventListener('click', function () {
+    if (!confirm('¿Borrar lo que hiciste en esta demo y volver a los datos de prueba?')) return;
+    navigator.serviceWorker.ready.then(function (reg) {
+      navigator.serviceWorker.addEventListener('message', function m(ev) {
+        if (ev.data === 'reiniciado') { navigator.serviceWorker.removeEventListener('message', m); location.reload(); }
+      });
+      reg.active.postMessage('reiniciar');
+    });
+  });
+})();
+</script>
+</body>
+</html>
