@@ -98,7 +98,7 @@
       sw.postMessage('preparar');
     });
   }
-  navigator.serviceWorker.register('sw.js?v=202611112332', { scope: './' })
+  navigator.serviceWorker.register('sw.js?v=202611121437', { scope: './' })
     .then(function () { return navigator.serviceWorker.ready; })
     .then(function (reg) { return preparar(reg.active); })
     .then(function () {
